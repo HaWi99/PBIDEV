@@ -1,0 +1,20 @@
+model Model
+	culture: de-DE
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: de-DE
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Amazon"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Amazon
+ref table DateTableTemplate_6cc98b44-22f1-429e-a3ba-cdad4a223d2b
+ref table LocalDateTable_2cd87365-68e9-42df-a77e-3b0461a61f1d
+
+ref cultureInfo de-DE
+

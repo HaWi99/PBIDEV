@@ -1,0 +1,85 @@
+table Amazon
+	lineageTag: 45b8c179-7319-4eab-8930-31c86ece4bd1
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 61c0d406-a62d-4843-8e07-34a581d84ea0
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: d7586102-f76c-41e7-ae8a-89f1057dc0d7
+			defaultHierarchy: LocalDateTable_2cd87365-68e9-42df-a77e-3b0461a61f1d.Datumshierarchie
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Open
+		dataType: int64
+		formatString: 0
+		lineageTag: 94548f97-3ff2-4fb3-8230-d1fe00c8375d
+		summarizeBy: sum
+		sourceColumn: Open
+
+		annotation SummarizationSetBy = Automatic
+
+	column High
+		dataType: int64
+		formatString: 0
+		lineageTag: f275d5bf-1d94-4a90-a206-d2613c9720b3
+		summarizeBy: sum
+		sourceColumn: High
+
+		annotation SummarizationSetBy = Automatic
+
+	column Low
+		dataType: int64
+		formatString: 0
+		lineageTag: 38edd8c4-0654-4a6b-8825-cda8665fd13c
+		summarizeBy: sum
+		sourceColumn: Low
+
+		annotation SummarizationSetBy = Automatic
+
+	column Close
+		dataType: int64
+		formatString: 0
+		lineageTag: 526ed757-e0f8-4c81-bb00-c908d39175f3
+		summarizeBy: sum
+		sourceColumn: Close
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Adj Close'
+		dataType: int64
+		formatString: 0
+		lineageTag: 78754323-c7c9-47ee-8fe8-20dde8e42f28
+		summarizeBy: sum
+		sourceColumn: Adj Close
+
+		annotation SummarizationSetBy = Automatic
+
+	column Volume
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a17b856-0930-425e-94e3-6e16900bef14
+		summarizeBy: sum
+		sourceColumn: Volume
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Amazon = m
+		mode: import
+		source =
+				let
+				    Quelle = Csv.Document(File.Contents("C:\Users\hansueli\PBIDEV\PBIDEV\Amazon.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Höher gestufte Header" = Table.PromoteHeaders(Quelle, [PromoteAllScalars=true]),
+				    #"Geänderter Typ" = Table.TransformColumnTypes(#"Höher gestufte Header",{{"Date", type date}, {"Open", Int64.Type}, {"High", Int64.Type}, {"Low", Int64.Type}, {"Close", Int64.Type}, {"Adj Close", Int64.Type}, {"Volume", Int64.Type}})
+				in
+				    #"Geänderter Typ"
+
+	annotation PBI_ResultType = Table
+
