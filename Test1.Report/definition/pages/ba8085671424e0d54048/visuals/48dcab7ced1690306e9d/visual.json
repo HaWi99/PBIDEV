@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "48dcab7ced1690306e9d",
   "position": {
-    "x": 10,
+    "x": 10.249110320284696,
     "y": 0,
     "z": 0,
-    "height": 280,
-    "width": 280
+    "height": 413.38078291814946,
+    "width": 872.31316725978638
   },
   "visual": {
     "visualType": "lineChart",
@@ -144,6 +144,21 @@
           ]
         }
       }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "gridlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   },
